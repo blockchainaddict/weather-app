@@ -22,7 +22,6 @@ function NavBar() {
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
-
         
         <div className="navbar-end">
           <a className="navbar-item">Home</a>
