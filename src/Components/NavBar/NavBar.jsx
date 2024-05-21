@@ -1,4 +1,9 @@
+import useLocation from "../../services/useLocation";
+
 function NavBar() {
+
+  const { location, error } = useLocation();
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -24,7 +29,12 @@ function NavBar() {
       <div id="navbarBasicExample" className="navbar-menu">
         
         <div className="navbar-end">
-          <a className="navbar-item">Home</a>
+          <div className="coords-header">
+            <p className="is-size-6">{location ? location.latitude?.toFixed(2) : error}</p>
+            <p>{location ? location.longitude?.toFixed(2) : null}</p>
+          </div>
+          
+          {/* <a className="navbar-item">Home</a>
 
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">More</a>
@@ -36,7 +46,7 @@ function NavBar() {
               <hr className="navbar-divider" />
               <a className="navbar-item">Report an issue</a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

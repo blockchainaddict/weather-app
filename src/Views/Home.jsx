@@ -6,13 +6,12 @@ function Home() {
   return (
     <Container>
       <div className="intro mt-6 mb-6">
-        <h1 className="title is-3 has-text-centered">Weather App</h1>
-        <h2 className="subtitle is-6 has-text-centered">By BlockchainAddict</h2>
+        <h3 className="subtitle is-5 has-text-centered">Minimal Weather</h3>
       </div>
 
       <Weather/>
 
-      {/* <CardContainer></CardContainer> */}
+      <div className="over"></div>
     </Container>
   )
 }
