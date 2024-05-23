@@ -59,8 +59,6 @@ function Weather() {
   }
 
   function getRainShadowColor(rain) {
-    console.log('RAIN:', rain);
-
     if (rain == 0) {
       return "cornflowerBlue";
     } else if (rain < 0.3) {
@@ -101,7 +99,7 @@ function Weather() {
           };
         });
 
-        console.log("data", data);
+        // console.log("data", data);
       } catch (error) {
         console.log(error);
       }
