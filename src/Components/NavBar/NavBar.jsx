@@ -9,10 +9,10 @@ function NavBar() {
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           
-          <img src="https://bulma.io/images/bulma-logo.png" alt="image-of-myapp" />
+          <div className="header-logo"></div>
         </a>
 
-        <a
+        {/* <a
           role="button"
           className="navbar-burger"
           aria-label="menu"
@@ -23,7 +23,7 @@ function NavBar() {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </a> */}
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">

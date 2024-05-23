@@ -10,7 +10,7 @@ function Weather() {
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ cardStyle, setCardStyle ] = useState({
     tempBoxShadow: null,
-    windBoxSadow: null,
+    windBoxShadow: null,
     rainBoxShadow: null,
   });
   // const [ rain, setRain ] = useState([]);
@@ -34,14 +34,19 @@ function Weather() {
   };
 
   function getTempShadowColor(temp) {
+    console.log('temp - - - - - ', temp);
 
     if (temp < 5) {
+      console.log('less than 5');
       return 'white';
     } else if (temp < 10) {
+      console.log('less than 10');
       return 'blue';
     } else if (temp < 15) {
+      console.log('less than 15');
       return 'violet';
     } else {
+      console.log('more than 15');
       return 'orange';
     }
   }
@@ -101,7 +106,7 @@ function Weather() {
     };
 
     fetchWeather();
-  }, [location]);
+  }, [localISOTime, location, weatherData?.current_weather?.temperature]);
 
   return (
     <div>
@@ -110,24 +115,24 @@ function Weather() {
         {weatherData ? (
           <div className="weather-container" onClick={toggleModal}>
             <div className="weather-card" style={{boxShadow: cardStyle.tempBoxShadow}}>
-              <p className="is-size-3">
+              <p className="weather-info-text">
                 {weatherData?.current_weather?.temperature} °C
               </p>
               <sub>Temperature</sub>
             </div>
 
-            <div className="weather-card" style={{boxShadow: cardStyle.windBoxSadow}} onClick={toggleModal}>
-              <p className="is-size-3">
+            <div className="weather-card" style={{boxShadow: cardStyle.windBoxShadow}} onClick={toggleModal}>
+              <p className="weather-info-text">
                 {weatherData?.hourly?.windspeed_10m[currentIndex]} m/s
               </p>
               <sub>Winds</sub>
             </div>
 
             <div className="weather-card" style={{boxShadow: cardStyle.rainBoxShadow}} onClick={toggleModal}>
-              <p className="is-size-3">
+              <p className="weather-info-text">
                 {weatherData?.hourly?.rain[currentIndex] ? "It will rain" : "Clear skies"}
               </p>
-              <p className="is-size-3">
+              <p className="weather-info-text">
                 {weatherData?.hourly?.snowfall[currentIndex] ? "It will snow" : null}
               </p>
               <sub>Skies</sub>
