@@ -35,6 +35,13 @@ function Weather() {
             weatherData.hourly.temperature_2m[currentIndex + 3],
             weatherData.hourly.temperature_2m[currentIndex + 4],
           ],
+          hours: [
+            weatherData.hourly.time[currentIndex],
+            weatherData.hourly.time[currentIndex + 1],
+            weatherData.hourly.time[currentIndex + 2],
+            weatherData.hourly.time[currentIndex + 3],
+            weatherData.hourly.time[currentIndex + 4],
+          ],
         });
         break;
       case "wind":
@@ -47,6 +54,13 @@ function Weather() {
             weatherData.hourly.windspeed_10m[currentIndex + 3],
             weatherData.hourly.windspeed_10m[currentIndex + 4],
           ],
+          hours: [
+            weatherData.hourly.time[currentIndex],
+            weatherData.hourly.time[currentIndex + 1],
+            weatherData.hourly.time[currentIndex + 2],
+            weatherData.hourly.time[currentIndex + 3],
+            weatherData.hourly.time[currentIndex + 4],
+          ],
         });
         break;
       case "rain":
@@ -58,6 +72,13 @@ function Weather() {
             weatherData?.hourly?.precipitation_probability[currentIndex + 2],
             weatherData?.hourly?.precipitation_probability[currentIndex + 3],
             weatherData?.hourly?.precipitation_probability[currentIndex + 4],
+          ],
+          hours: [
+            weatherData.hourly.time[currentIndex],
+            weatherData.hourly.time[currentIndex + 1],
+            weatherData.hourly.time[currentIndex + 2],
+            weatherData.hourly.time[currentIndex + 3],
+            weatherData.hourly.time[currentIndex + 4],
           ],
         });
         break;

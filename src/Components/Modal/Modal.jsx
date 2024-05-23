@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Modal({ onClose, information, currentTimeIndex }) {
+function Modal({ onClose, information }) {
   const [symbol, setSymbol] = useState("");
 
   useEffect(() => {
@@ -17,11 +17,11 @@ function Modal({ onClose, information, currentTimeIndex }) {
       default:
         break;
     }
-  }, [symbol, information]);
+  }, [information.title]);
 
   return (
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div className="modal-background" onClick={onClose}></div>
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">{information.title}</p>
@@ -33,13 +33,25 @@ function Modal({ onClose, information, currentTimeIndex }) {
         </header>
         <section className="modal-card-body">
           {information ? (
-            <div >
-              {information.information.map((item, index) => (
-                <div key={index} className="weather-info-modal">
-                  <p>{" "}{item} {symbol}{" "}</p> {" "}
-                  <p> {currentTimeIndex + index}hs</p>
-                </div>
-              ))}
+            <div className="weather-info-modal">
+              <div>
+                {information.hours.map((dateTime, index) => (
+                  <div key={index}>
+                    <p> {new Date(dateTime).getHours()}hs</p>
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                {information.information.map((item, index) => (
+                  <div key={index}>
+                    <p>
+                      {" "}
+                      {item} {symbol}{" "}
+                    </p>{" "}
+                  </div>
+                ))}
+              </div>
             </div>
           ) : (
             <p>No information available</p>
