@@ -3,6 +3,15 @@
 @import url(Components/Card/Card.scss);
 @import url(Components/NavBar/NavBar.scss);
 @import url(Components/Weather/Weather.scss);
+@import url(Components/Modal/Modal.scss);
+
+
+.signature{
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: .9em;
+}
 
 // Bg
 .over{

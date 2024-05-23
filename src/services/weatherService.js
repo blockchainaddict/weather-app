@@ -9,7 +9,7 @@ const getWeather = async (lat, long) => {
                 latitude: lat,
                 longitude: long,
                 current_weather: true,
-                hourly: ['windspeed_10m', 'rain', 'snowfall'],
+                hourly: [ 'temperature_2m', 'windspeed_10m', 'rain', 'snowfall', 'precipitation_probability'],
                 timezone: 'auto'
             }
         });

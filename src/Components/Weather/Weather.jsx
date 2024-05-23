@@ -16,13 +16,54 @@ function Weather() {
   // const [ rain, setRain ] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
 
   const { location, error } = useLocation();
 
   const currentTime = new Date();
   const localISOTime = format(currentTime, "yyyy-MM-dd'T'HH:00");
 
-  const toggleModal = () => {
+  const toggleModal = (e) => {
+    switch (e.target.id) {
+      case "temp":
+        setModalInfo({
+          title: "Temperature",
+          information: [
+            weatherData.hourly.temperature_2m[currentIndex],
+            weatherData.hourly.temperature_2m[currentIndex + 1],
+            weatherData.hourly.temperature_2m[currentIndex + 2],
+            weatherData.hourly.temperature_2m[currentIndex + 3],
+            weatherData.hourly.temperature_2m[currentIndex + 4],
+          ],
+        });
+        break;
+      case "wind":
+        setModalInfo({
+          title: "Wind Speed",
+          information: [
+            weatherData.hourly.windspeed_10m[currentIndex],
+            weatherData.hourly.windspeed_10m[currentIndex + 1],
+            weatherData.hourly.windspeed_10m[currentIndex + 2],
+            weatherData.hourly.windspeed_10m[currentIndex + 3],
+            weatherData.hourly.windspeed_10m[currentIndex + 4],
+          ],
+        });
+        break;
+      case "rain":
+        setModalInfo({
+          title: "Rain",
+          information: [
+            weatherData?.hourly?.precipitation_probability[currentIndex],
+            weatherData?.hourly?.precipitation_probability[currentIndex + 1],
+            weatherData?.hourly?.precipitation_probability[currentIndex + 2],
+            weatherData?.hourly?.precipitation_probability[currentIndex + 3],
+            weatherData?.hourly?.precipitation_probability[currentIndex + 4],
+          ],
+        });
+        break;
+      default:
+    }
+
     setIsModalOpen(!isModalOpen);
   };
 
@@ -46,7 +87,6 @@ function Weather() {
   }
 
   function getWindShadowColor(windSpeed) {
-
     if (windSpeed < 5) {
       return "green"; // Low wind speeds
     } else if (windSpeed < 10) {
@@ -99,7 +139,7 @@ function Weather() {
           };
         });
 
-        // console.log("data", data);
+        console.log("data", data);
       } catch (error) {
         console.log(error);
       }
@@ -113,10 +153,12 @@ function Weather() {
       <div>
         {error && <p>Error: {error.message}</p>}
         {weatherData ? (
-          <div className="weather-container" onClick={toggleModal}>
+          <div className="weather-container">
             <div
               className="weather-card"
               style={{ boxShadow: cardStyle.tempBoxShadow }}
+              onClick={toggleModal}
+              id="temp"
             >
               <p className="weather-info-text">
                 {weatherData?.current_weather?.temperature} °C
@@ -128,6 +170,7 @@ function Weather() {
               className="weather-card"
               style={{ boxShadow: cardStyle.windBoxShadow }}
               onClick={toggleModal}
+              id="wind"
             >
               <p className="weather-info-text">
                 {weatherData?.hourly?.windspeed_10m[currentIndex]} km/h
@@ -139,18 +182,20 @@ function Weather() {
               className="weather-card"
               style={{ boxShadow: cardStyle.rainBoxShadow }}
               onClick={toggleModal}
+              id="rain"
             >
               <p className="weather-info-text">
-                {weatherData?.hourly?.rain[currentIndex]
-                  ? "It might rain"
-                  : "Clear skies"}
+                {" "}
+                {weatherData?.hourly?.precipitation_probability[currentIndex]}%
               </p>
+              {/* <sub>{weatherData?.hourly?.rain[currentIndex]} mm</sub> */}
+
               <p className="weather-info-text">
                 {weatherData?.hourly?.snowfall[currentIndex]
                   ? "It might snow"
                   : null}
               </p>
-              <sub>Skies</sub>
+              <sub>Rain</sub>
             </div>
           </div>
         ) : (
@@ -158,7 +203,13 @@ function Weather() {
         )}
       </div>
 
-      {isModalOpen && <Modal title={"Temperature"} onClose={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          information={modalInfo}
+          currentTimeIndex={currentIndex}
+          onClose={closeModal}
+        />
+      )}
 
       <div className="weather-background"></div>
     </div>

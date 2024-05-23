@@ -1,6 +1,5 @@
-import { Container } from "react-bulma-components"
-import Weather from "../Components/Weather/Weather.jsx"
-
+import { Container } from "react-bulma-components";
+import Weather from "../Components/Weather/Weather.jsx";
 
 function Home() {
   return (
@@ -9,11 +8,20 @@ function Home() {
         <h3 className="subtitle is-5 has-text-centered">Minimal Weather</h3>
       </div>
 
-      <Weather/>
+      <Weather />
+
+      <div className="signature">
+        <p>
+          {" "}
+          <i>
+            Designed and Coded by <b>Santiago VB</b>
+          </i>
+        </p>
+      </div>
 
       <div className="over"></div>
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;
