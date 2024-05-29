@@ -57,9 +57,7 @@ function Modal({ onClose, information }) {
             <p>No information available</p>
           )}
         </section>
-        {/* <footer className="modal-card-foot">
-       
-      </footer> */}
+     
       </div>
     </div>
   );

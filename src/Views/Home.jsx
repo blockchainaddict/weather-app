@@ -1,5 +1,6 @@
 import { Container } from "react-bulma-components";
 import Weather from "../Components/Weather/Weather.jsx";
+import Footer from "../Components/Footer/Footer.jsx";
 
 function Home() {
   return (
@@ -18,6 +19,8 @@ function Home() {
           </i>
         </p>
       </div>
+
+      <Footer/>
 
       <div className="over"></div>
     </Container>
